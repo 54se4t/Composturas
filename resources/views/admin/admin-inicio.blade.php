@@ -36,7 +36,7 @@
                                     @php
                                         $contarCitas = 0;
                                         foreach ($citas as $cita) {
-                                            if($cita['estado'] == 'terminado' || $cita['estado'] == 'recogido') {
+                                            if($cita['estado'] == 'confirmado') {
                                                 $contarCitas++;
                                             }
                                         }
@@ -95,7 +95,7 @@
                     <td>
                         @foreach ($trabajadores as $trabajador)
                             @if ($trabajador['TID'] == $cita['TID'])
-                                {{$cliente['nombre']}}
+                                {{$trabajador['apellidos']}}
                             @endif
                         @endforeach
                         @if (!$cita['TID'])

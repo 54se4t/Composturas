@@ -108,7 +108,7 @@ class AdminController extends Controller
         CitasDB::setFecha($request);
         $html = [
             "estado" => "succeso",
-            "mensaje" => $request['coger']
+            "mensaje" => "¡Succeso!"
         ];
         return response()->json(array('html'=> $html), 200);
     }
