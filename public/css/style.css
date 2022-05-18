@@ -1,0 +1,42 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.icon {
+    width: 3rem;
+    margin: 0.5rem;
+}
+
+.botonLogin {
+    margin-top: 1rem;
+}
+
+.row {
+    margin: 1rem;
+}
+
+.clickable {
+    cursor: pointer
+}
+
+#mensaje-succeso,
+#mensaje-error {
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, 0%);
+    transition-duration: 1s;
+    opacity: 0;
+    pointer-events: none;
+    /*Permite clic el botón debajo de el*/
+    z-index: 10;
+}
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem;
+    opacity: 0;
+    transition-duration: 1s;
+    z-index: 10;
+}

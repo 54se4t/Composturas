@@ -1,0 +1,25 @@
+svg {
+    margin: 0.5rem;
+}
+
+main {
+    left: 0;
+}
+
+.titulo {
+    font-size: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .nav-fijo {
+        width: 270px !important;
+        margin-bottom: 0;
+    }
+    main {
+        /*uso clase container-fluid per aún tiene un espacio entre nav y ventana*/
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: -1rem;
+    }
+}
