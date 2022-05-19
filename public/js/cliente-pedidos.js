@@ -16,7 +16,7 @@ function getMessagePedirCitas() {
     let hora = $('#listaHoras a.active').text() + ":00";
     let fecha = new Date().getFullYear() + "-" + mes + "-" + dia + " " + hora;
     console.log(fecha);
-    /*if (fecha.length < 19) {
+    if (fecha.length < 19) {
         $('#mensaje-error div').text('Por favor, selecciona una hora');
         $('#mensaje-error').css('opacity', '1')
         setTimeout(function() { $('#mensaje-error').css('opacity', '0') }, 3000);
@@ -61,7 +61,7 @@ function getMessagePedirCitas() {
                 setTimeout(function() { $('#mensaje-error').css('opacity', '0') }, 3000);
             }
         });
-    }*/
+    }
 }
 $("#botonPedirCitas").click(getMessagePedirCitas);
 
