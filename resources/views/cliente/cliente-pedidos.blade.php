@@ -106,6 +106,8 @@
         mesCelda.classList.add('list-group-item');
         mesCelda.textContent = mes;
         mesCelda.addEventListener('click', function() {
+            let diaCeldas = document.querySelector("#listaMeses").childNodes;
+            diaCeldas.forEach(element => element.classList.remove('active'));
             mesCelda.classList.add('active');
             listaDias.innerHTML = "";
             for (const dias in meses[mes]) {
