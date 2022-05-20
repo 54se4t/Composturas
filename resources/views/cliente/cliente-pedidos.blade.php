@@ -8,7 +8,7 @@
             <div id="row">
                 <div class="col col-12 btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-primary" id="navPedirCitas">Pedir Citas</button>
-                    <button type="button" class="btn btn-primary" id="navMisCitas">Mis Citas</button>
+                    <button type="button" class="btn btn-primary" id="navMisCitas">Mis Pedidos</button>
                 </div>
             </div>
         </div>
@@ -32,6 +32,15 @@
                 <button type="button" class="col col-4 btn btn-success" id="botonPedirCitas">Pedir</button>
                 <div class="col col-4"></div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>En el campo de día, muestra la cantidad de citas disponibles de este día</li>
+                        <li>La descripción es obligatorio</li>
+                        <li>No permite cancelar las citas del siguiente día</li>
+                    </ul>
+                </div>
+            </div>
     </article>
     <article class="container" id="misCitas">
         <section>
@@ -45,20 +54,26 @@
                             @if ($cita['estado'] == 'terminado')
                                 </div>
                                 <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                    class="position-absolute top-0 translate-middle badge rounded-pill bg-success">
                                     Recoger tu ropa!
                                 </span>
-                            @elseif ($cita['estado'] == 'recogido')
+                                @elseif ($cita['estado'] == 'recogido')
+                                    </div>
+                                    <span
+                                        class="position-absolute top-0 translate-middle badge rounded-pill bg-secondary">
+                                        Recogido
+                                    </span>
+                            @elseif ($cita['estado'] == 'en proceso')
                                 </div>
                                 <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                                    Recogido
+                                    class="position-absolute top-0 translate-middle badge rounded-pill bg-warning">
+                                    Trabajando
                                 </span>
                             @else
-                                    <a class="card-link cancelar">Cancelar</a>
+                                    <button type="button" class="btn btn-outline-danger cancelar">Cancelar</button>
                                 </div>
                                 <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                    class="position-absolute top-0 translate-middle badge rounded-pill bg-primary">
                                     {{ $cita['estado'] }}
                                 </span>
                             @endif

@@ -15,7 +15,6 @@ function getMessagePedirCitas() {
         dia = "0" + dia;
     let hora = $('#listaHoras a.active').text() + ":00";
     let fecha = new Date().getFullYear() + "-" + mes + "-" + dia + " " + hora;
-    console.log(fecha);
     if (fecha.length < 19) {
         $('#mensaje-error div').text('Por favor, selecciona una hora');
         $('#mensaje-error').css('opacity', '1')
@@ -35,7 +34,6 @@ function getMessagePedirCitas() {
             },
             success: function(data) {
                 if (data.html["estado"] === "succeso") {
-                    console.log(data.html["mensaje"]);
                     $('#mensaje-succeso div').text(data.html["mensaje"]);
                     $('#mensaje-succeso').css('opacity', '1')
                     setTimeout(function() {
@@ -43,7 +41,6 @@ function getMessagePedirCitas() {
                         window.location.href = ''
                     }, 1500);
                 } else {
-                    console.log(data.html["mensaje"]); //Error personalizado
                     $('#mensaje-error div').text(data.html["mensaje"]);
                     $('#mensaje-error').css('opacity', '1')
                     setTimeout(function() { $('#mensaje-error').css('opacity', '0') }, 1500);
@@ -67,42 +64,42 @@ $("#botonPedirCitas").click(getMessagePedirCitas);
 
 let citas = document.querySelectorAll('.cita');
 citas.forEach(cita => {
-    cita.childNodes[1].textContent //Fecha
-    cita.childNodes[5].addEventListener('click', function() {
-        $.ajax({
-            type: 'POST',
-            url: window.location.pathname + '/cancelar',
-            data: { //Datos que envia al servidor
-                _token: $('meta[name="csrf-token"]').attr('content'),
-                fecha: cita.childNodes[1].textContent
-            },
-            success: function(data) {
-                if (data.html["estado"] === "succeso") {
-                    console.log(data.html["mensaje"]);
-                    $('#mensaje-succeso div').text(data.html["mensaje"]);
-                    $('#mensaje-succeso').css('opacity', '1')
-                    setTimeout(function() {
-                        $('#mensaje-succeso').css('opacity', '0');
-                        window.location.href = ''
-                    }, 1500);
-                } else {
-                    console.log(data.html["mensaje"]); //Error personalizado
-                    $('#mensaje-error div').text(data.html["mensaje"]);
+    if (cita.childNodes.length === 7) {
+        cita.childNodes[5].addEventListener('click', function(e) {
+            $.ajax({
+                type: 'POST',
+                url: window.location.pathname + '/cancelar',
+                data: { //Datos que envia al servidor
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    fecha: cita.childNodes[1].textContent
+                },
+                success: function(data) {
+                    if (data.html["estado"] === "succeso") {
+                        $('#mensaje-succeso div').text(data.html["mensaje"]);
+                        $('#mensaje-succeso').css('opacity', '1')
+                        setTimeout(function() {
+                            $('#mensaje-succeso').css('opacity', '0');
+                            window.location.href = ''
+                        }, 1500);
+                    } else {
+                        $('#mensaje-error div').text(data.html["mensaje"]);
+                        $('#mensaje-error').css('opacity', '1')
+                        setTimeout(function() { $('#mensaje-error').css('opacity', '0') }, 1500);
+                    }
+                },
+                error: function(request) { //Error de formato de campos
+                    //Obtener error como un array
+                    let errors = JSON.parse(request.responseText)["errors"];
+                    let mensajeError = "";
+                    for (let error in errors) {
+                        mensajeError += errors[error] + "<br>";
+                    }
+                    $('#mensaje-error div').html(mensajeError);
                     $('#mensaje-error').css('opacity', '1')
-                    setTimeout(function() { $('#mensaje-error').css('opacity', '0') }, 1500);
+                    setTimeout(function() { $('#mensaje-error').css('opacity', '0') }, 3000);
                 }
-            },
-            error: function(request) { //Error de formato de campos
-                //Obtener error como un array
-                let errors = JSON.parse(request.responseText)["errors"];
-                let mensajeError = "";
-                for (let error in errors) {
-                    mensajeError += errors[error] + "<br>";
-                }
-                $('#mensaje-error div').html(mensajeError);
-                $('#mensaje-error').css('opacity', '1')
-                setTimeout(function() { $('#mensaje-error').css('opacity', '0') }, 3000);
-            }
-        });
-    })
+            });
+
+        })
+    }
 });

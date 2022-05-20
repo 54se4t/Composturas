@@ -9,6 +9,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-var URL = $('meta[name="baseURL"]').attr('content');
+//var URL = $('meta[name="baseURL"]').attr('content');
 
 var googleProvider = new firebase.auth.GoogleAuthProvider();

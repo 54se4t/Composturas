@@ -145,7 +145,7 @@ citasBuscarEstado.addEventListener('click', function() {
     let estado = document.querySelector('#citas .buscar-estado+input');
     estado = estado.value.toLowerCase();
     for (let i = 0; i < datosCitas.length; i++) {
-        if (datosCitas[i].children[4].textContent.toLowerCase().indexOf(estado) !== -1)
+        if (datosCitas[i].children[4].childNodes[1].value.toLowerCase().indexOf(estado) !== -1)
             datosCitas[i].style.display = 'table-row';
         else
             datosCitas[i].style.display = 'none';
