@@ -224,8 +224,8 @@
                 </tbody>
             </table>
     </article>
-    <article id="guia">
-        <div>guia</div>
+    <article class="h-100" id="guia">
+            <embed class="w-100 h-100" src="{{ asset('pdfs/Guía de uso.pdf')}}" type="application/pdf"/>
     </article>
 @endsection
 
