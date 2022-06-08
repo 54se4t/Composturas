@@ -19,6 +19,6 @@ class AdministradorAtuh
         if($request->session()->has('trabajador') && session()->get('trabajador')['permiso'] === 'administrador')
             return $next($request);
         else
-            return abort(404, 'No tienes permiso para hacer esto');
+            return abort(404, 'No tienes permiso para hacer esto: '.session()->get('trabajador')['permiso']);
     }
 }

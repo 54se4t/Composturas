@@ -7,6 +7,7 @@
             $tiempoDisponible = [];
 
             $tiempo = new DateTime(); //Tiempo actual
+            $tiempo = $tiempo->modify('+1 day');
             //Convierte todo a numero para facilitar calculo
             $anio = intval($tiempo->format('Y'));
             $mes = intval($tiempo->format('m'));
